@@ -1,0 +1,116 @@
+{UTF-8}
+Constante Evaporacion=0.5
+	~	
+	~		|
+
+Flujo Riego=IF THEN ELSE( Modo Operacion = 2 :AND: Nivel Humedad Suelo < Umbral App ,\
+		 20 , 0 )
+	~	
+	~		|
+
+Modo Operacion=2
+	~	
+	~		|
+
+Nivel Humedad Suelo=A FUNCTION OF(Nivel Humedad Suelo,Tasa Secado) ~~|
+Nivel Humedad Suelo= INTEG (Flujo Riego - Tasa Secado,
+		100)
+	~	
+	~		|
+
+Tasa Secado=A FUNCTION OF(Tasa Secado,Constante Evaporacion,Temp DHT11) ~~|
+Tasa Secado=Constante Evaporacion * Temp DHT11 * (Nivel Humedad Suelo / 100)
+	~	
+	~		|
+
+Temp DHT11=28
+	~	
+	~		|
+
+Umbral App=80
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,2
+10,1,Nivel Humedad Suelo,556,191,58,26,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,254,192,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,3,48,503,192,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,4,6,2,100,0,0,22,0,192,0,-1--1--1,,1|(321,192)|
+1,5,6,3,4,0,0,22,0,192,0,-1--1--1,,1|(442,192)|
+11,6,0,385,192,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,7,Flujo Riego,385,226,46,26,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,8,48,762,191,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,9,11,1,100,0,0,22,0,192,0,-1--1--1,,1|(645,191)|
+1,10,11,8,4,0,0,22,0,192,0,-1--1--1,,1|(720,191)|
+11,11,0,683,191,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,12,Tasa Secado,683,225,48,26,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,13,Temp DHT11,931,207,49,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,14,Umbral App,196,267,47,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,15,Modo Operacion,236,354,62,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,16,Constante Evaporacion,931,273,47,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,17,13,12,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,18,16,12,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,19,14,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,20,15,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,21,1,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+///---\\\
+:L<%^E!@
+5:Nivel Humedad Suelo
+19:100,0
+24:0
+25:0
+26:0
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Vensim Sans|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1
